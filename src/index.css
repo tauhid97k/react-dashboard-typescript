@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+  }
+}
+
+body {
+  @apply text-gray-600 dark:text-gray-400;
+}
+
+.card {
+  @apply p-5 bg-white dark:bg-gray-900 shadow;
+}
+
+.icon {
+  @apply w-5 h-5;
+}
+.btn-icon {
+  @apply w-6 h-6;
+}
+.header-icon {
+  @apply w-6 h-6 text-gray-500 dark:text-gray-400 group-hover:text-gray-700 dark:group-hover:text-gray-300;
+}
+.dropdown-icon {
+  @apply w-5 h-5 text-gray-500 dark:text-gray-300;
+}
+.table-icon {
+  @apply w-6 h-6 text-gray-400 group-hover:text-gray-500 dark:text-gray-500 dark:group-hover:text-gray-300;
+}
+.paginate-icon {
+  @apply w-6 h-6 text-gray-500 dark:text-gray-300;
+}
+
+.input-label {
+  @apply block mb-1;
+}
+
+.input {
+  @apply w-full rounded-lg border-none mb-0.5 placeholder:text-gray-400 dark:placeholder:text-gray-600 focus:ring-2 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900 focus:ring-blue-500/70 dark:focus:ring-blue-400/50 bg-gray-100 dark:bg-gray-800;
+}
+
+.input-error {
+  @apply text-[14px] text-red-400 tracking-normal;
+}
