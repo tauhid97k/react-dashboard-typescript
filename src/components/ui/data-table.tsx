@@ -97,24 +97,26 @@ export function DataTable<TData, TValue>({
           )}
         </TableBody>
       </Table>
-      <ReactPaginate
-        pageCount={table.getPageCount()}
-        initialPage={table.getState().pagination.pageIndex}
-        onPageChange={({ selected }) => table.setPageIndex(selected)}
-        previousLabel={<IoChevronBack className="paginate-icon" />}
-        previousLinkClassName="h-10 w-10 flex items-center justify-center gap-1 rounded-full whitespace-nowrap text-base font-medium text-gray-600 dark:text-gray-300 tracking-wide transition-colors focus:outline-none focus:ring-2 ring-offset-2 ring-gray-300 dark:ring-gray-700/60 dark:ring-offset-gray-900 bg-gray-200 hover:bg-gray-200/80 dark:bg-gray-700 dark:hover:bg-gray-700/90"
-        nextLabel={<IoChevronForward className="paginate-icon" />}
-        nextLinkClassName="h-10 w-10 flex items-center justify-center gap-1 rounded-full whitespace-nowrap text-base font-medium text-gray-600 dark:text-gray-300 tracking-wide transition-colors focus:outline-none focus:ring-2 ring-offset-2 ring-gray-300 dark:ring-gray-700/60 dark:ring-offset-gray-900 bg-gray-200 hover:bg-gray-200/80 dark:bg-gray-700 dark:hover:bg-gray-700/90"
-        disabledClassName="pointer-events-none opacity-50"
-        containerClassName="flex items-center justify-center gap-4 pt-4"
-        pageClassName="w-10 h-10 font-medium rounded-full border-2 dark:border-gray-800 overflow-hidden"
-        pageLinkClassName="w-full h-full flex items-center justify-center focus:outline-none"
-        activeClassName="text-blue-700 !border-blue-500 dark:text-blue-300"
-        activeLinkClassName="bg-blue-100 dark:bg-blue-950"
-        breakLabel="..."
-        pageRangeDisplayed={1}
-        renderOnZeroPageCount={null}
-      />
+      {data.length > 0 && (
+        <ReactPaginate
+          pageCount={table.getPageCount()}
+          initialPage={table.getState().pagination.pageIndex}
+          onPageChange={({ selected }) => table.setPageIndex(selected)}
+          previousLabel={<IoChevronBack className="paginate-icon" />}
+          previousLinkClassName="h-10 w-10 flex items-center justify-center gap-1 rounded-full whitespace-nowrap text-base font-medium text-gray-600 dark:text-gray-300 tracking-wide transition-colors focus:outline-none focus:ring-2 ring-offset-2 ring-gray-300 dark:ring-gray-700/60 dark:ring-offset-gray-900 bg-gray-200 hover:bg-gray-200/80 dark:bg-gray-700 dark:hover:bg-gray-700/90"
+          nextLabel={<IoChevronForward className="paginate-icon" />}
+          nextLinkClassName="h-10 w-10 flex items-center justify-center gap-1 rounded-full whitespace-nowrap text-base font-medium text-gray-600 dark:text-gray-300 tracking-wide transition-colors focus:outline-none focus:ring-2 ring-offset-2 ring-gray-300 dark:ring-gray-700/60 dark:ring-offset-gray-900 bg-gray-200 hover:bg-gray-200/80 dark:bg-gray-700 dark:hover:bg-gray-700/90"
+          disabledClassName="pointer-events-none opacity-50"
+          containerClassName="flex items-center justify-center gap-4 pt-4"
+          pageClassName="w-10 h-10 font-medium rounded-full border-2 dark:border-gray-800 overflow-hidden"
+          pageLinkClassName="w-full h-full flex items-center justify-center focus:outline-none"
+          activeClassName="text-blue-700 !border-blue-500 dark:text-blue-300"
+          activeLinkClassName="bg-blue-100 dark:bg-blue-950"
+          breakLabel="..."
+          pageRangeDisplayed={1}
+          renderOnZeroPageCount={null}
+        />
+      )}
     </div>
   )
 }
