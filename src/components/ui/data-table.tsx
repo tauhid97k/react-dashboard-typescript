@@ -17,10 +17,12 @@ import {
 } from '@/components/ui/table'
 import { IoChevronBack, IoChevronForward } from 'react-icons/io5'
 import ReactPaginate from 'react-paginate'
+import TableLoading from './table-loading'
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
   data: TData[]
+  loading: boolean
   pagination: {
     pageIndex: number
     pageSize: number
@@ -32,6 +34,7 @@ interface DataTableProps<TData, TValue> {
 export function DataTable<TData, TValue>({
   columns,
   data,
+  loading,
   pagination,
   totalData,
   setPagination,
@@ -51,7 +54,8 @@ export function DataTable<TData, TValue>({
   })
 
   return (
-    <div className="card">
+    <div className="card relative overflow-hidden">
+      {loading && <TableLoading />}
       <Table>
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (

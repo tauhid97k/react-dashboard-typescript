@@ -1,4 +1,4 @@
-const Loading = () => {
+const PageLoading = () => {
   return (
     <div className="h-[calc(100vh-110px)] grid place-items-center justify-center">
       <svg
@@ -51,4 +51,4 @@ const Loading = () => {
   )
 }
 
-export default Loading
+export default PageLoading

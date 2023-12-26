@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button'
 import { BiPlus } from 'react-icons/bi'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
-import Loading from '@/components/ui/loading'
+import PageLoading from '@/components/ui/page-loading'
 import Error from '@/components/ui/Error'
 
 const PostsPage = () => {
@@ -15,18 +15,18 @@ const PostsPage = () => {
     pageSize: 10,
   })
 
-  const { data, isError, isLoading } = useGetPostsQuery({
+  const { data, isError, isLoading, isFetching } = useGetPostsQuery({
     page: pagination.pageIndex + 1,
     limit: pagination.pageSize,
   })
 
-  if (isLoading) return <Loading />
+  if (isLoading) return <PageLoading />
   if (isError) return <Error />
 
   return (
     <>
       <PageHeader>
-        <Button asChild>
+        <Button size="sm" asChild>
           <Link to="/dashboard/posts/create">
             <BiPlus className="btn-icon" />
             <span>Add Post</span>
@@ -39,6 +39,7 @@ const PostsPage = () => {
         totalData={71}
         pagination={pagination}
         setPagination={setPagination}
+        loading={isFetching}
       />
     </>
   )
