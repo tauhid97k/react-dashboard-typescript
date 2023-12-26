@@ -21,7 +21,7 @@ body {
   @apply w-5 h-5;
 }
 .btn-icon {
-  @apply w-6 h-6;
+  @apply w-[1.375rem] h-[1.375rem];
 }
 .header-icon {
   @apply w-6 h-6 text-gray-500 dark:text-gray-400 group-hover:text-gray-700 dark:group-hover:text-gray-300;

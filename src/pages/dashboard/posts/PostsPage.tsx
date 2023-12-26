@@ -5,11 +5,20 @@ import { useGetPostsQuery } from '@/redux/features/posts/postApi'
 import { Button } from '@/components/ui/button'
 import { BiPlus } from 'react-icons/bi'
 import { Link } from 'react-router-dom'
+import { useState } from 'react'
 import Loading from '@/components/ui/loading'
 import Error from '@/components/ui/Error'
 
 const PostsPage = () => {
-  const { data, isError, isLoading } = useGetPostsQuery(undefined)
+  const [pagination, setPagination] = useState({
+    pageIndex: 0,
+    pageSize: 10,
+  })
+
+  const { data, isError, isLoading } = useGetPostsQuery({
+    page: pagination.pageIndex + 1,
+    limit: pagination.pageSize,
+  })
 
   if (isLoading) return <Loading />
   if (isError) return <Error />
@@ -24,7 +33,13 @@ const PostsPage = () => {
           </Link>
         </Button>
       </PageHeader>
-      <DataTable columns={postColumns} data={data} />
+      <DataTable
+        columns={postColumns}
+        data={data}
+        totalData={71}
+        pagination={pagination}
+        setPagination={setPagination}
+      />
     </>
   )
 }
