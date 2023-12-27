@@ -10,12 +10,14 @@ import PageLoading from '@/components/ui/page-loading'
 import Error from '@/components/ui/Error'
 
 const PostsPage = () => {
+  const [search, setSearch] = useState('')
   const [pagination, setPagination] = useState({
     pageIndex: 0,
     pageSize: 10,
   })
 
   const { data, isError, isLoading, isFetching } = useGetPostsQuery({
+    search,
     page: pagination.pageIndex + 1,
     limit: pagination.pageSize,
   })
@@ -37,6 +39,8 @@ const PostsPage = () => {
         columns={postColumns}
         data={data}
         totalData={71}
+        search={search}
+        setSearch={setSearch}
         pagination={pagination}
         setPagination={setPagination}
         loading={isFetching}

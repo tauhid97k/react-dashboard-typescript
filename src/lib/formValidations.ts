@@ -28,3 +28,8 @@ export const ForgotPasswordSchema = yup.object({
 export type ForgotPasswordSchemaTypes = yup.InferType<
   typeof ForgotPasswordSchema
 >
+
+// Posts Schema
+export const PostSearchSchema = yup.object({
+  search: yup.string().typeError('Search must be string'),
+})
