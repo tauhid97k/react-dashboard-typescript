@@ -20,8 +20,8 @@ export const postColumns: ColumnDef<Post>[] = [
     accessorKey: 'description',
   },
   {
-    header: 'Published',
-    accessorKey: 'is_published',
+    header: 'Status',
+    accessorKey: 'status',
   },
   {
     header: 'Created At',
@@ -29,8 +29,7 @@ export const postColumns: ColumnDef<Post>[] = [
   },
   {
     header: 'Actions',
-    cell: ({ row }) => {
-      const { id } = row.original
+    cell: () => {
       return (
         <DropdownMenu modal={false}>
           <DropdownMenuTrigger asChild>

@@ -37,8 +37,8 @@ const PostsPage = () => {
       </PageHeader>
       <DataTable
         columns={postColumns}
-        data={data}
-        totalData={71}
+        data={data.data}
+        totalData={data.meta.total}
         search={search}
         setSearch={setSearch}
         pagination={pagination}

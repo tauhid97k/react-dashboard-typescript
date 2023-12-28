@@ -93,7 +93,7 @@ export function DataTable<TData, TValue>({
   // Rerender on search change
   useEffect(() => {
     table.setGlobalFilter(debouncedSearchInput)
-    table.setPageIndex(0)
+    table.resetPagination()
   }, [debouncedSearchInput])
 
   return (

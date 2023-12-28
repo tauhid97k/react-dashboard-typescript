@@ -2,7 +2,9 @@
 export type Post = {
   id: string
   title: string
+  slug: string
   description: string
-  is_published: boolean
+  status: boolean
   created_at: Date
+  updated_at: Date
 }

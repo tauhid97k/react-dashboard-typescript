@@ -1,5 +1,4 @@
 import baseApi from '@/redux/api'
-// import { Post } from '@/lib/dataTypes'
 
 const postsApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
