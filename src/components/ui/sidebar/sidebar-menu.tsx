@@ -1,4 +1,4 @@
-import { ScrollArea } from '@/components/ui/scroll-area'
+import { ScrollArea } from '@/components/scroll-area'
 import SidebarCollapse from '@/components/ui/sidebar/sidebar-collapse'
 import SidebarCollapseLink from '@/components/ui/sidebar/sidebar-collapse-link'
 import SidebarLink from '@/components/ui/sidebar/sidebar-link'

@@ -3,7 +3,7 @@ import {
   Collapsible,
   CollapsibleTrigger,
   CollapsibleContent,
-} from '@/components/ui/collapsible'
+} from '@/components/collapsible'
 import { useState } from 'react'
 import { HiOutlineChevronDown } from 'react-icons/hi'
 

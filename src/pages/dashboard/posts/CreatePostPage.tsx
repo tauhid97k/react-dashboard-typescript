@@ -7,12 +7,15 @@ const CreatePostPage = () => {
   const navigate = useNavigate()
 
   return (
-    <PageHeader>
-      <Button variant="secondary" size="sm" onClick={() => navigate(-1)}>
-        <GoArrowLeft className="btn-icon" />
-        <span>Go Back</span>
-      </Button>
-    </PageHeader>
+    <>
+      <PageHeader>
+        <Button variant="secondary" size="sm" onClick={() => navigate(-1)}>
+          <GoArrowLeft className="btn-icon" />
+          <span>Go Back</span>
+        </Button>
+      </PageHeader>
+      <div className="card"></div>
+    </>
   )
 }
 

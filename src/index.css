@@ -14,7 +14,7 @@ body {
 }
 
 .card {
-  @apply p-5 bg-white dark:bg-gray-900 shadow;
+  @apply p-5 bg-white dark:bg-gray-900 shadow rounded-lg;
 }
 
 .icon {
@@ -41,7 +41,7 @@ body {
 }
 
 .input {
-  @apply w-full rounded-lg border-none mb-0.5 placeholder:text-gray-400 dark:placeholder:text-gray-600 focus:ring-2 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900 focus:ring-blue-500/70 dark:focus:ring-blue-400/50 bg-gray-100 dark:bg-gray-800;
+  @apply w-full rounded-lg border-none mb-0.5 placeholder:text-gray-500 focus:ring-2 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900 focus:ring-blue-500/70 dark:focus:ring-blue-400/50 bg-gray-100 dark:bg-gray-800;
 }
 
 .input-error {

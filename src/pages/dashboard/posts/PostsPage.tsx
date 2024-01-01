@@ -6,8 +6,8 @@ import { Button } from '@/components/ui/button'
 import { BiPlus } from 'react-icons/bi'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
-import PageLoading from '@/components/ui/page-loading'
-import Error from '@/components/ui/Error'
+import PageLoading from '@/components/page-loading'
+import Error from '@/components/Error'
 
 const PostsPage = () => {
   const [search, setSearch] = useState('')

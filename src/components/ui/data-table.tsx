@@ -14,15 +14,17 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@/components/ui/table'
+} from '@/components/table'
 import { IoChevronBack, IoChevronForward } from 'react-icons/io5'
 import ReactPaginate from 'react-paginate'
-import TableLoading from './table-loading'
+import TableLoading from '@/components/table-loading'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { PostSearchSchema } from '@/lib/formValidations'
 import { useEffect, useState } from 'react'
 import { useDebounce } from '@uidotdev/usehooks'
+import { GoSearch } from 'react-icons/go'
+import { cn } from '@/lib/utils'
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
@@ -50,7 +52,7 @@ export function DataTable<TData, TValue>({
 }: DataTableProps<TData, TValue>) {
   // Search debounce
   const [searchInputChange, setSearchInputChange] = useState('')
-  const debouncedSearchInput = useDebounce(searchInputChange, 600)
+  const debouncedSearchInput = useDebounce(searchInputChange, 700)
 
   // Init table
   const table = useReactTable({
@@ -100,14 +102,17 @@ export function DataTable<TData, TValue>({
     <div className="card relative overflow-hidden">
       {loading && <TableLoading />}
       <div className="max-w-sm mb-4">
-        <input
-          type="search"
-          {...register('search')}
-          onChange={onSearchChange}
-          placeholder="Search here"
-          className="input"
-          autoComplete="off"
-        />
+        <div className="relative">
+          <GoSearch className="icon absolute top-2/4 left-3 -translate-y-2/4" />
+          <input
+            type="search"
+            {...register('search')}
+            onChange={onSearchChange}
+            placeholder="Search here"
+            className={cn('input', 'pl-10')}
+            autoComplete="off"
+          />
+        </div>
         {errors?.search && (
           <span className="input-error">{errors.search.message}</span>
         )}

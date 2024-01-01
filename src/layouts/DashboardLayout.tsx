@@ -1,6 +1,6 @@
 import Header from '@/components/ui/header'
 import Sidebar from '@/components/ui/sidebar/sidebar'
-import { ScrollArea } from '@/components/ui/scroll-area'
+import { ScrollArea } from '@/components/scroll-area'
 import { Outlet } from 'react-router-dom'
 
 const DashboardLayout = () => {

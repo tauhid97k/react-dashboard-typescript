@@ -13,7 +13,7 @@ const BreadCrumbs = () => {
 
     return (
       <Link to={currentLink} key={link} className="flex items-center">
-        <span className="capitalize hover:text-gray-800">
+        <span className="capitalize hover:text-gray-800 dark:hover:text-gray-300">
           {isFirstChild ? (
             <span className="flex items-center gap-1">
               <GoHome className="icon" />
