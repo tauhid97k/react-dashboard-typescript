@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit'
 import darkModeReducer from './features/darkModeSlice'
+import postReducer from './features/posts/postSlice'
 import baseApi from './api'
 
 const store = configureStore({
   reducer: {
     darkMode: darkModeReducer,
+    post: postReducer,
     [baseApi.reducerPath]: baseApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>

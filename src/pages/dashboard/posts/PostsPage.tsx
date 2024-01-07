@@ -1,6 +1,6 @@
 import PageHeader from '@/components/ui/page-header'
+import { columns } from './columns'
 import { DataTable } from '@/components/ui/data-table'
-import { postColumns } from './columns'
 import { useGetPostsQuery } from '@/redux/features/posts/postApi'
 import { Button } from '@/components/ui/button'
 import { BiPlus } from 'react-icons/bi'
@@ -14,18 +14,26 @@ import { cn } from '@/lib/utils'
 import { GoSearch } from 'react-icons/go'
 import PageLoading from '@/components/page-loading'
 import Error from '@/components/Error'
-import Modal from '@/components/modal'
+import AlertModal from '@/components/alert-modal'
+import { useAppSelector, useAppDispatch } from '@/redux/hooks'
+import {
+  deleteModalStatus,
+  setDeleteModal,
+} from '@/redux/features/posts/postSlice'
 
 const PostsPage = () => {
-  // Search, Pagination, Modal
+  const isDeleteModalOpen = useAppSelector(deleteModalStatus)
+  const dispatch = useAppDispatch()
+
+  // Search, Pagination
   const [searchInput, setSearchInput] = useState('')
   const search = useDebounce(searchInput, 1000)
   const [pagination, setPagination] = useState({
     pageIndex: 0,
     pageSize: 10,
   })
-  const [isDeleteModalOpen, setDeleteModalOpen] = useState(false)
 
+  // Search register & handler
   const {
     register,
     trigger,
@@ -47,6 +55,8 @@ const PostsPage = () => {
     }
   }
 
+  const handleDelete = () => {}
+
   // Data Fetching
   const { data, isError, isLoading, isFetching } = useGetPostsQuery({
     search,
@@ -66,7 +76,6 @@ const PostsPage = () => {
             <span>Add Post</span>
           </Link>
         </Button>
-        <button onClick={() => setDeleteModalOpen(true)}>Click</button>
       </PageHeader>
 
       <div className="card">
@@ -87,7 +96,7 @@ const PostsPage = () => {
           )}
         </div>
         <DataTable
-          columns={postColumns}
+          columns={columns}
           data={data.data}
           totalData={data.meta.total}
           search={search}
@@ -98,12 +107,13 @@ const PostsPage = () => {
         />
       </div>
 
-      <Modal
+      <AlertModal
         type="ALERT"
         title="Confirm Delete"
         description="This action cannot be undone. This will permanently delete your post and remove your data from the servers."
         isModalOpen={isDeleteModalOpen}
-        setModalOpen={setDeleteModalOpen}
+        setModalOpen={() => dispatch(setDeleteModal(!isDeleteModalOpen))}
+        actionFn={handleDelete}
       />
     </>
   )

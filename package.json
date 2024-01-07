@@ -18,7 +18,7 @@
     "@radix-ui/react-scroll-area": "^1.0.5",
     "@radix-ui/react-slot": "^1.0.2",
     "@reduxjs/toolkit": "^2.0.1",
-    "@tanstack/react-table": "^8.11.2",
+    "@tanstack/react-table": "^8.11.3",
     "@uidotdev/usehooks": "^2.4.1",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",

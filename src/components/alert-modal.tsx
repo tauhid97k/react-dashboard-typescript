@@ -1,30 +1,30 @@
 import * as Dialog from '@radix-ui/react-dialog'
 import { Button } from './ui/button'
 import { AiOutlineClose } from 'react-icons/ai'
-import { SetStateAction, useRef } from 'react'
+import { useRef } from 'react'
 
-const Modal = ({
+const AlertModal = ({
   type,
   isModalOpen,
   setModalOpen,
   title,
   description,
   actionText,
-  children,
+  actionFn,
 }: {
   type: 'ALERT' | 'CONFIRM'
   isModalOpen: boolean
-  setModalOpen: React.Dispatch<SetStateAction<boolean>>
+  setModalOpen: () => void
   title: string
-  description?: string
+  description: string
   actionText?: string
-  children?: React.ReactNode
+  actionFn: () => void
 }) => {
   const initialFocusRef = useRef<HTMLButtonElement>(null)
 
   return (
     <Dialog.Root open={isModalOpen} onOpenChange={setModalOpen}>
-      <Dialog.Overlay className="fixed inset-0 bg-black/40 dark:bg-black/50 z-10 data-[state=open]:animate-in data-[state=open]:fade-in data-[state=closed]:animate-out data-[state=closed]:fade-out duration-500" />
+      <Dialog.Overlay className="fixed inset-0 bg-black/40 dark:bg-black/60 z-10 data-[state=open]:animate-in data-[state=open]:fade-in data-[state=closed]:animate-out data-[state=closed]:fade-out duration-500" />
       <Dialog.Portal>
         <Dialog.Content
           onOpenAutoFocus={(e) => {
@@ -47,9 +47,7 @@ const Modal = ({
               </Button>
             </Dialog.Close>
           </div>
-          <div className="mt-4 mb-6">
-            {description ? <p>{description}</p> : children && <>{children}</>}
-          </div>
+          <p className="mt-4 mb-6">{description}</p>
           <div className="flex justify-end items-center gap-2">
             <Dialog.Close asChild>
               <Button variant="secondary" size="sm">
@@ -58,6 +56,10 @@ const Modal = ({
             </Dialog.Close>
             <Button
               ref={initialFocusRef}
+              onClick={() => {
+                actionFn()
+                setModalOpen()
+              }}
               variant={type === 'ALERT' ? 'destructive' : 'default'}
               size="sm"
             >
@@ -70,4 +72,4 @@ const Modal = ({
   )
 }
 
-export default Modal
+export default AlertModal

@@ -30,6 +30,7 @@ interface DataTableProps<TData, TValue> {
     pageSize: number
   }
   totalData: number
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   setSearch: OnChangeFn<any>
   setPagination: OnChangeFn<PaginationState>
 }
@@ -65,7 +66,7 @@ export function DataTable<TData, TValue>({
   useEffect(() => {
     table.setGlobalFilter(search)
     table.resetPagination()
-    console.log(search)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [search])
 
   return (

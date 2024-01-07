@@ -9,8 +9,10 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/dropdown-menu'
+import { useAppDispatch } from '@/redux/hooks'
+import { setDeleteModal } from '@/redux/features/posts/postSlice'
 
-export const postColumns: ColumnDef<Post>[] = [
+export const columns: ColumnDef<Post>[] = [
   {
     header: 'Title',
     accessorKey: 'title',
@@ -30,6 +32,9 @@ export const postColumns: ColumnDef<Post>[] = [
   {
     header: 'Actions',
     cell: () => {
+      // eslint-disable-next-line react-hooks/rules-of-hooks
+      const dispatch = useAppDispatch()
+
       return (
         <DropdownMenu modal={false}>
           <DropdownMenuTrigger asChild>
@@ -39,11 +44,14 @@ export const postColumns: ColumnDef<Post>[] = [
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             <DropdownMenuItem>
-              <BiEdit className="dropdown-icon" />
+              <BiEdit className="icon" />
               <span>Edit</span>
             </DropdownMenuItem>
-            <DropdownMenuItem>
-              <BiTrash className="dropdown-icon" />
+            <DropdownMenuItem
+              onClick={() => dispatch(setDeleteModal(true))}
+              className="text-red-400 dark:text-red-400"
+            >
+              <BiTrash className="icon" />
               <span>Delete</span>
             </DropdownMenuItem>
           </DropdownMenuContent>
