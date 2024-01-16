@@ -3,11 +3,20 @@ import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { LoginSchema, LoginSchemaTypes } from '@/lib/formValidations'
 import { Link } from 'react-router-dom'
+import { useLoginMutation } from '@/redux/features/auth/authApi'
+import { useAppDispatch } from '@/redux/hooks'
+import { setCredentials } from '@/redux/features/auth/authSlice'
+import { useNavigate } from 'react-router-dom'
 
 const LoginPage = () => {
+  const [login] = useLoginMutation()
+  const dispatch = useAppDispatch()
+  const navigate = useNavigate()
+
   const {
     register,
     handleSubmit,
+    setError,
     formState: { isSubmitting, errors },
   } = useForm({
     resolver: yupResolver(LoginSchema),
@@ -18,7 +27,27 @@ const LoginPage = () => {
   })
 
   const onSubmit = async (values: LoginSchemaTypes) => {
-    console.log(values)
+    const loginResponse = await login(values)
+
+    // Login Validation
+    if (loginResponse?.error?.data?.validationError) {
+      loginResponse.error.data.validationError.forEach(
+        ({ feedback: { type, message }, name }) => {
+          setError(name, { type, message })
+        }
+      )
+    } else if (loginResponse?.error?.data) {
+      console.log(loginResponse.error.data.message) // error toast
+    } else if (loginResponse?.data) {
+      const accessToken = loginResponse.data.accessToken
+      dispatch(
+        setCredentials({
+          accessToken,
+        })
+      )
+      console.log(loginResponse.data.message) // login successful toast
+      navigate('/dashboard')
+    }
   }
 
   return (

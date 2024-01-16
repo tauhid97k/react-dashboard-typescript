@@ -1,7 +1,10 @@
 import PageHeader from '@/components/ui/page-header'
 import { columns } from './columns'
 import { DataTable } from '@/components/ui/data-table'
-import { useGetPostsQuery } from '@/redux/features/posts/postApi'
+import {
+  useGetPostsQuery,
+  useDeletePostMutation,
+} from '@/redux/features/posts/postApi'
 import { Button } from '@/components/ui/button'
 import { BiPlus } from 'react-icons/bi'
 import { Link } from 'react-router-dom'
@@ -55,14 +58,22 @@ const PostsPage = () => {
     }
   }
 
-  const handleDelete = () => {}
-
   // Data Fetching
   const { data, isError, isLoading, isFetching } = useGetPostsQuery({
     search,
     page: pagination.pageIndex + 1,
     limit: pagination.pageSize,
   })
+
+  // Delete Data
+  const [deletePost] = useDeletePostMutation()
+  const handleDelete = async () => {
+    try {
+      await deletePost(3)
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   if (isLoading) return <PageLoading />
   if (isError) return <Error />

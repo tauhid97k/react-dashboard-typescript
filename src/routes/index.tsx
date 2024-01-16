@@ -10,11 +10,16 @@ import CreateUserPage from '@/pages/dashboard/users/CreateUserPage'
 import PostsPage from '@/pages/dashboard/posts/PostsPage'
 import CreatePostPage from '@/pages/dashboard/posts/CreatePostPage'
 import SettingsPage from '@/pages/dashboard/settings/SettingsPage'
+import AuthProvider from './AuthProvider'
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <AuthLayout />,
+    element: (
+      <AuthProvider>
+        <AuthLayout />
+      </AuthProvider>
+    ),
     children: [
       {
         index: true,
@@ -32,7 +37,11 @@ const router = createBrowserRouter([
   },
   {
     path: '/dashboard',
-    element: <DashboardLayout />,
+    element: (
+      <AuthProvider>
+        <DashboardLayout />
+      </AuthProvider>
+    ),
     children: [
       {
         index: true,

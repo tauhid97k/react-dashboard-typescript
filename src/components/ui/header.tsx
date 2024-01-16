@@ -11,8 +11,13 @@ import { LuLogOut, LuUser2 } from 'react-icons/lu'
 import { RxMoon, RxSun, RxHamburgerMenu } from 'react-icons/rx'
 import { selectDarkMode, toggleDarkMode } from '@/redux/features/darkModeSlice'
 import { useAppDispatch, useAppSelector } from '@/redux/hooks'
+import { useAuthUserQuery } from '@/redux/features/auth/authApi'
 
 const Header = () => {
+  const { data: authUser } = useAuthUserQuery(undefined, {
+    refetchOnMountOrArgChange: true,
+    refetchOnReconnect: true,
+  })
   const isDarkMode = useAppSelector(selectDarkMode)
   const dispatch = useAppDispatch()
 
@@ -36,7 +41,8 @@ const Header = () => {
         </Button>
 
         <DropdownMenu modal={false}>
-          <DropdownMenuTrigger className="outline-none focus:ring-2 ring-offset-2 dark:ring-offset-gray-900 ring-gray-300 dark:ring-gray-700/60 rounded-full">
+          <DropdownMenuTrigger className="flex items-center gap-2 pl-2 outline-none focus:ring-2 ring-offset-2 dark:ring-offset-gray-900 ring-gray-300 dark:ring-gray-700/60 rounded-full">
+            <span className="max-w-[200px] truncate">{authUser?.email}</span>
             <Avatar>
               <AvatarImage src="https://i.pravatar.cc/40?img=12" alt="avatar" />
               <AvatarFallback>
